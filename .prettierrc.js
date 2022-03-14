@@ -1,0 +1,9 @@
+module.exports = {
+  jsxSingleQuote: true,
+  useTabs: true,
+  arrowParens: 'avoid',
+  singleQuote: true,
+  vueIndentScriptAndStyle: true,
+  semi: false,
+  trailingComma: 'none',
+};
