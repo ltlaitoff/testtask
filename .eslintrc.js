@@ -1,7 +1,7 @@
 module.exports = {
 	root: true,
 	extends: '@react-native-community',
-	plugins: ['react', 'prettier'],
+	plugins: ['react', 'prettier', 'flowtype'],
 	rules: {
 		indent: ['error', 'tab', { SwitchCase: 1 }],
 		'linebreak-style': ['error', 'unix'],

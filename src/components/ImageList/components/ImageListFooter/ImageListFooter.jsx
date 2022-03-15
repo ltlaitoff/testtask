@@ -7,38 +7,63 @@ import type { Node } from 'react'
 
 import PropTypes from 'prop-types'
 
-import { View, Image, Text } from 'react-native'
+import {
+	View,
+	Image,
+	Text,
+	Linking,
+	TouchableOpacity,
+	Alert
+} from 'react-native'
 
 import styles from './ImageListFooter.styles.js'
 import Heart from 'assets/images/favicons/Heart'
 
-const ImageListFooter = ({ userLogoUrl, userName, likesCount, liked }) => {
+const ImageListFooter = ({
+	userUrl,
+	userLogoUrl,
+	userName,
+	likesCount,
+	liked
+}) => {
+	const onPress = () => {
+		const supported = Linking.canOpenURL(userUrl)
+
+		if (supported) {
+			Linking.openURL(userUrl)
+		} else {
+			Alert.alert(`Don't know how to open this URL: ${userUrl}`)
+		}
+	}
+
 	return (
 		<View style={styles.wrapper}>
-			<View style={styles.left}>
-				<Image
-					style={styles.userIcon}
-					source={{
-						uri: userLogoUrl
-					}}
-				/>
+			<TouchableOpacity style={styles.left} onPress={onPress}>
+				<View style={styles.userIconView}>
+					<Image
+						style={styles.userIcon}
+						source={{
+							uri: userLogoUrl
+						}}
+					/>
+				</View>
 				<Text style={styles.username}>{userName}</Text>
-			</View>
+			</TouchableOpacity>
 
 			<View style={styles.right}>
-				{/* style={{ backgroundColor: liked ? 'gray' : 'orange' }} */}
-				<Heart />
+				<Heart style={styles.likeIcon} fill={liked ? '#c83db7' : '#6c6f78'} />
 				<Text style={styles.likeText}>{likesCount}</Text>
 			</View>
 		</View>
 	)
 }
 
-// ImageListFooter.propTypes = {
-// 	userLogoUrl: PropTypes.string,
-// 	userName: PropTypes.string,
-// 	likesCount: PropTypes.number,
-// 	liked: PropTypes.boolean
-// }
+ImageListFooter.propTypes = {
+	userUrl: PropTypes.string,
+	userLogoUrl: PropTypes.string,
+	userName: PropTypes.string,
+	likesCount: PropTypes.number,
+	liked: PropTypes.bool
+}
 
 export default ImageListFooter

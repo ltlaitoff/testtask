@@ -1,5 +1,7 @@
 import { API_TOKEN } from '@env'
 
+import { shuffle } from 'utils'
+
 const getPhotos = () => {
 	if (API_TOKEN === undefined) {
 		throw new Error('API: API_TOKEN not defined')
@@ -7,7 +9,10 @@ const getPhotos = () => {
 
 	return fetch(`https://api.unsplash.com/photos/?client_id=${API_TOKEN}`)
 		.then(response => response.json())
-		.catch(err => err)
+		.then(array => shuffle(array))
+		.catch(err => {
+			throw err
+		})
 }
 
 export { getPhotos }

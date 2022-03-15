@@ -33,7 +33,8 @@
 					"api": "./src/api",
 					"components": "./src/components",
 					"navigations": "./src/navigations",
-					"scenes": "./src/scenes"
+					"scenes": "./src/scenes",
+					"shuffle": "./src/shuffle"
 				}
 			}
 		]

@@ -10,15 +10,15 @@ import ImageList from 'components/ImageList'
 
 import { getPhotos } from 'api'
 
-import { View } from 'react-native'
+import { SafeAreaView } from 'react-native'
 
 import styles from './App.styles.js'
 
 const App: () => Node = () => {
 	return (
-		<View style={styles.container}>
+		<SafeAreaView style={styles.container}>
 			<ImageList />
-		</View>
+		</SafeAreaView>
 	)
 }
 
