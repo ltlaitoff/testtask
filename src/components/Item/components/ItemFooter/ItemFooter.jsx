@@ -16,16 +16,10 @@ import {
 	Alert
 } from 'react-native'
 
-import styles from './ImageListFooter.styles.js'
+import styles from './ItemFooter.styles.js'
 import Heart from 'assets/images/favicons/Heart'
 
-const ImageListFooter = ({
-	userUrl,
-	userLogoUrl,
-	userName,
-	likesCount,
-	liked
-}) => {
+const ItemFooter = ({ userUrl, userLogoUrl, userName, likesCount, liked }) => {
 	const onPress = () => {
 		const supported = Linking.canOpenURL(userUrl)
 
@@ -58,7 +52,7 @@ const ImageListFooter = ({
 	)
 }
 
-ImageListFooter.propTypes = {
+ItemFooter.propTypes = {
 	userUrl: PropTypes.string,
 	userLogoUrl: PropTypes.string,
 	userName: PropTypes.string,
@@ -66,4 +60,4 @@ ImageListFooter.propTypes = {
 	liked: PropTypes.bool
 }
 
-export default ImageListFooter
+export default ItemFooter

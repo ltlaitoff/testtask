@@ -41,7 +41,6 @@ export default StyleSheet.create({
 		fontWeight: '500',
 		fontSize: 18,
 		color: '#1e183c'
-		// display: 'inline-block'
 	},
 	likeIcon: {
 		width: 30,

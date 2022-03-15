@@ -4,6 +4,7 @@
  */
 import React, { useState, useEffect } from 'react'
 import type { Node } from 'react'
+import { useNavigation } from '@react-navigation/native'
 
 import {
 	RefreshControl,
@@ -15,33 +16,11 @@ import {
 	SafeAreaView
 } from 'react-native'
 
-import ImageListFooter from './components/ImageListFooter'
+import Item from 'components/Item'
 
 import { getPhotos } from 'api'
 
 import styles from './ImageList.styles.js'
-
-const renderItem = ({ item }) => {
-	return (
-		<View style={styles.item}>
-			<Image
-				style={styles.image}
-				source={{
-					uri: item.urls.regular
-				}}
-			/>
-
-			<ImageListFooter
-				style={styles.footer}
-				userUrl={item.user.links.html}
-				userLogoUrl={item.user.profile_image.small}
-				userName={item.user.username}
-				likesCount={item.likes}
-				liked={item.liked_by_user}
-			/>
-		</View>
-	)
-}
 
 const ImageList = (): Node => {
 	const [error, setError] = useState(false)
@@ -86,7 +65,7 @@ const ImageList = (): Node => {
 				<FlatList
 					style={styles.list}
 					data={images}
-					renderItem={renderItem}
+					renderItem={props => <Item {...props} />}
 					keyExtractor={item => item.id}
 					showsVerticalScrollIndicator={false}
 					refreshControl={<RefreshControl {...refreshControlSettings} />}
