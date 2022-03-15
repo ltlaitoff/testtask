@@ -1,12 +1,35 @@
 {
 	"plugins": [
 		[
+			"module:react-native-dotenv",
+			{
+				"envName": "APP_ENV",
+				"moduleName": "@env",
+				"path": ".env"
+			}
+		],
+
+		[
 			"module-resolver",
 			{
 				"cwd": "babelrc",
 				"root": ["./src"],
-				"extensions": [".js", ".ios.js", ".android.js"],
+				"extensions": [
+					".js",
+					".ios.js",
+					".android.js",
+					".jsx",
+					".ios.jsx",
+					".android.jsx",
+					".ts",
+					".ios.ts",
+					".android.ts",
+					".tsx",
+					".ios.tsx",
+					".android.tsx"
+				],
 				"alias": {
+					"assets": "./src/assets",
 					"api": "./src/api",
 					"components": "./src/components",
 					"navigations": "./src/navigations",

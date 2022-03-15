@@ -1,0 +1,1 @@
+export { getPhotos } from './api'
