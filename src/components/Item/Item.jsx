@@ -1,35 +1,50 @@
 import React from 'react'
 import { View, Image, TouchableOpacity } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
-
+import { useDispatch } from 'react-redux'
+import { setImage } from 'store/actions'
 import ItemFooter from './components/ItemFooter'
 
 import styles from './Item.styles.js'
 
 const Item = ({ item }) => {
 	const navigation = useNavigation()
+	const dispatch = useDispatch()
+
+	const {
+		urls: { regular: mainImageUrl, full: mainFullImageUrl },
+		user: {
+			links: { html: userUrl },
+			profile_image: { small: userLogoUrl },
+			username: userName
+		},
+		likes: likesCount,
+		liked_by_user: liked
+	} = item
+
+	const onImageClick = () => {
+		navigation.navigate('ImageDetails')
+		dispatch(setImage(mainFullImageUrl))
+	}
 
 	return (
 		<View style={styles.item}>
-			<TouchableOpacity
-				style={styles.image}
-				onPress={() => navigation.navigate('ImageDetails')}
-			>
+			<TouchableOpacity style={styles.image} onPress={onImageClick}>
 				<Image
 					style={styles.image}
 					source={{
-						uri: item.urls.regular
+						uri: mainImageUrl
 					}}
 				/>
 			</TouchableOpacity>
 
 			<ItemFooter
 				style={styles.footer}
-				userUrl={item.user.links.html}
-				userLogoUrl={item.user.profile_image.small}
-				userName={item.user.username}
-				likesCount={item.likes}
-				liked={item.liked_by_user}
+				userUrl={userUrl}
+				userLogoUrl={userLogoUrl}
+				userName={userName}
+				likesCount={likesCount}
+				liked={liked}
 			/>
 		</View>
 	)

@@ -30,6 +30,7 @@
 				],
 				"alias": {
 					"assets": "./src/assets",
+					"store": "./src/store",
 					"api": "./src/api",
 					"components": "./src/components",
 					"navigations": "./src/navigations",

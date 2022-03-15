@@ -3,7 +3,7 @@
  * @flow strict-local
  */
 import React, { useEffect } from 'react'
-import type { Node } from 'react'
+// import type { Node } from 'react'
 
 import ImageList from 'components/ImageList'
 

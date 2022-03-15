@@ -1,12 +1,9 @@
 module.exports = {
 	root: true,
-	extends: '@react-native-community',
-	parser: '@babel/eslint-parser',
+	extends: ['plugin:flowtype-errors/recommended', '@react-native-community'],
 	plugins: ['react', 'prettier', 'flowtype'],
+	parser: '@babel/eslint-parser',
 	rules: {
-		indent: ['error', 'tab', { SwitchCase: 1 }],
-		'linebreak-style': ['error', 'unix'],
-		quotes: ['warn', 'single'],
-		semi: ['error', 'never']
+		'prettier/prettier': 'error'
 	}
 }

@@ -4,13 +4,14 @@
  */
 import React, { useEffect } from 'react'
 import type { Node } from 'react'
+import FullScreenImage from 'components/FullScreenImage'
 
-import { SafeAreaView, Text } from 'react-native'
+import { SafeAreaView, Image } from 'react-native'
 
 const ImageDetails = () => {
 	return (
 		<SafeAreaView>
-			<Text>ImageDetails</Text>
+			<FullScreenImage />
 		</SafeAreaView>
 	)
 }
