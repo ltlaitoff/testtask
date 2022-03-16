@@ -6,6 +6,9 @@ import React, { useState, useEffect } from 'react'
 import type { Node } from 'react'
 import { useNavigation } from '@react-navigation/native'
 
+import { useDispatch, useSelector } from 'react-redux'
+import { getImageList } from 'store/actions'
+
 import {
 	RefreshControl,
 	View,
@@ -17,45 +20,41 @@ import {
 } from 'react-native'
 
 import Item from 'components/Item'
-
-import { getPhotos } from 'api'
+import { STATUSES } from 'data/config'
 
 import styles from './ImageList.styles.js'
 
 const ImageList = (): Node => {
-	const [error, setError] = useState(false)
-	const [images, setImages] = useState([])
 	const [refreshing, setRefreshing] = useState(false)
 
-	const getImagesFromAPI = () => {
-		setRefreshing(true)
-		setError(false)
+	const dispatch = useDispatch()
+	const { imageList, status } = useSelector(store => store.imageList)
 
-		getPhotos()
-			.then(photos => {
-				setImages(photos)
-				setRefreshing(false)
-			})
-			.catch(() => {
-				setError(true)
-				setRefreshing(false)
-			})
+	const getImageListFromAPI = () => {
+		setRefreshing(true)
+		dispatch(getImageList())
 	}
 
 	const refreshControlSettings = {
 		refreshing: refreshing,
-		onRefresh: getImagesFromAPI,
+		onRefresh: getImageListFromAPI,
 		size: 'large',
 		colors: ['#611eb1', '#c83db7']
 	}
 
 	useEffect(() => {
-		getImagesFromAPI()
+		if (refreshing) {
+			setRefreshing(false)
+		}
+	}, [imageList, status])
+
+	useEffect(() => {
+		getImageListFromAPI()
 	}, [])
 
 	return (
 		<SafeAreaView style={styles.container}>
-			{error ? (
+			{status === STATUSES.failed ? (
 				<ScrollView
 					refreshControl={<RefreshControl {...refreshControlSettings} />}
 				>
@@ -64,7 +63,7 @@ const ImageList = (): Node => {
 			) : (
 				<FlatList
 					style={styles.list}
-					data={images}
+					data={imageList}
 					renderItem={props => <Item {...props} />}
 					keyExtractor={item => item.id}
 					showsVerticalScrollIndicator={false}
