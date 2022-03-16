@@ -6,12 +6,12 @@ import {
 } from './actions'
 import { getPhotos } from 'api'
 
-function* workerImageList() {
+export function* workerImageList() {
 	try {
 		const imageList = yield call(getPhotos)
 		yield put(setImageList(imageList))
 	} catch (e) {
-		yield put(setImageListFailed(e.message))
+		yield put(setImageListFailed(e?.message))
 	}
 }
 

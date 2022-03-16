@@ -21,7 +21,6 @@ export default StyleSheet.create({
 		borderBottomRightRadius: 20
 	},
 	footer: {
-		// dispay: 'inline-block',
 		marginTop: 60
 	}
 })

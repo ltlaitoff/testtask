@@ -37,7 +37,6 @@ const Item = ({ item }) => {
 					}}
 				/>
 			</TouchableOpacity>
-
 			<ItemFooter
 				style={styles.footer}
 				userUrl={userUrl}

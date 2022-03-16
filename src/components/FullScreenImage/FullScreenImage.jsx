@@ -6,11 +6,17 @@ import React, { useState } from 'react'
 import type { Node } from 'react'
 import { useSelector } from 'react-redux'
 
-import { SafeAreaView, ScrollView, Image } from 'react-native'
+import {
+	SafeAreaView,
+	ScrollView,
+	Image,
+	ActivityIndicator
+} from 'react-native'
 
 import styles from './FullScreenImage.styles.js'
 
 const FullScreenImage = () => {
+	const [loaded, setLoaded] = useState(false)
 	const [horizontal, setHorisontal] = useState(true)
 
 	const imageUrl = useSelector(state => state.image.image)
@@ -20,20 +26,17 @@ const FullScreenImage = () => {
 	})
 
 	return (
-		<SafeAreaView
-			style={
-				({ ...styles.container },
-				{ transform: [{ rotate: horizontal ? '90deg' : '0deg' }] })
-			}
-		>
-			{/* <ScrollView style={styles.scroll}> */}
+		<SafeAreaView style={styles.container}>
+			{loaded === false && <ActivityIndicator size='large' color='#611eb1' />}
 			<Image
-				style={styles.image}
+				style={[
+					styles.image,
+					{ transform: [{ rotate: horizontal ? '90deg' : '0deg' }] }
+				]}
 				source={{
 					uri: imageUrl
 				}}
 			/>
-			{/* </ScrollView> */}
 		</SafeAreaView>
 	)
 }

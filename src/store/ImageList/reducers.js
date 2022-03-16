@@ -1,4 +1,8 @@
-import { IMAGE_LIST_SUCCEEDED, IMAGE_LIST_FAILED } from './actions'
+import {
+	IMAGE_LIST_REQUESTED,
+	IMAGE_LIST_SUCCEEDED,
+	IMAGE_LIST_FAILED
+} from './actions'
 import { STATUSES } from 'data/config'
 
 const defaultState = {
@@ -8,6 +12,8 @@ const defaultState = {
 
 export const imageListReducer = (state = defaultState, action) => {
 	switch (action.type) {
+		case IMAGE_LIST_REQUESTED:
+			return { ...state }
 		case IMAGE_LIST_SUCCEEDED:
 			return {
 				...state,
