@@ -29,8 +29,13 @@ const Item = ({ item }) => {
 
 	return (
 		<View style={styles.item}>
-			<TouchableOpacity style={styles.image} onPress={onImageClick}>
+			<TouchableOpacity
+				style={styles.image}
+				onPress={onImageClick}
+				accessibilityRole={'openFullImage'}
+			>
 				<Image
+					accessibilityRole={'image'}
 					style={styles.image}
 					source={{
 						uri: mainImageUrl

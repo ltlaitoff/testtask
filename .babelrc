@@ -1,5 +1,9 @@
 {
 	"plugins": [
+		["@babel/plugin-proposal-private-property-in-object", { "loose": true }],
+		["@babel/plugin-proposal-private-methods", { "loose": true }],
+		["@babel/plugin-proposal-class-properties", { "loose": true }],
+
 		[
 			"module:react-native-dotenv",
 			{
@@ -40,5 +44,11 @@
 				}
 			}
 		]
+	],
+
+	"presets": [
+		// "react-native",
+		"@babel/preset-env",
+		"module:metro-react-native-babel-preset"
 	]
 }
