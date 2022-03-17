@@ -61,7 +61,6 @@ describe('Item component', () => {
 
 	afterEach(() => {
 		cleanup()
-		// wrapper = null
 	})
 
 	it('Item should be not be null', () => {
