@@ -3,7 +3,6 @@ import { API_TOKEN } from '@env'
 import { shuffle } from 'utils'
 
 const getPhotos = () => {
-	console.log('getPhotos')
 	if (API_TOKEN === undefined) {
 		throw new Error('API: API_TOKEN not defined')
 	}

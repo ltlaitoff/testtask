@@ -2,7 +2,7 @@
  * @format
  * @flow strict-local
  */
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import type { Node } from 'react'
 import { useSelector } from 'react-redux'
 
@@ -15,15 +15,17 @@ import {
 
 import styles from './FullScreenImage.styles.js'
 
-const FullScreenImage = () => {
+const FullScreenImage: () => Node = () => {
 	const [loaded, setLoaded] = useState(false)
 	const [horizontal, setHorisontal] = useState(true)
 
 	const imageUrl = useSelector(state => state.image.image)
 
-	Image.getSize(imageUrl, (weight, height) => {
-		setHorisontal(weight > height)
-	})
+	useEffect(() => {
+		Image.getSize(imageUrl, (weight, height) => {
+			setHorisontal(weight > height)
+		})
+	}, [])
 
 	return (
 		<SafeAreaView style={styles.container}>
@@ -36,6 +38,7 @@ const FullScreenImage = () => {
 				source={{
 					uri: imageUrl
 				}}
+				onLoad={() => setLoaded(true)}
 			/>
 		</SafeAreaView>
 	)

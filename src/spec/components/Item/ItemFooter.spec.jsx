@@ -41,13 +41,13 @@ describe('ItemFooter component', () => {
 	})
 
 	it('UserLogo should be not a null', () => {
-		const image = wrapper.getByRole('user logo')
+		const image = wrapper.getByRole('image')
 
 		expect(image).not.toBeNull()
 	})
 
 	it('userLogo should have a link uri userLogoUrl', () => {
-		const image = wrapper.getByRole('user logo')
+		const image = wrapper.getByRole('image')
 
 		expect(image.props.source.uri).toBe('userLogoUrl')
 	})

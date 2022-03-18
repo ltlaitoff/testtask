@@ -1,4 +1,9 @@
+/**
+ * @format
+ * @flow strict-local
+ */
 import React from 'react'
+import type { Node } from 'react'
 import { View, Image, TouchableOpacity } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 import { useDispatch } from 'react-redux'
@@ -7,7 +12,7 @@ import ItemFooter from './components/ItemFooter'
 
 import styles from './Item.styles.js'
 
-const Item = ({ item }) => {
+const Item: () => Node = ({ item }) => {
 	const navigation = useNavigation()
 	const dispatch = useDispatch()
 
@@ -32,7 +37,7 @@ const Item = ({ item }) => {
 			<TouchableOpacity
 				style={styles.image}
 				onPress={onImageClick}
-				accessibilityRole={'openFullImage'}
+				accessibilityRole={'imagebutton'}
 			>
 				<Image
 					accessibilityRole={'image'}

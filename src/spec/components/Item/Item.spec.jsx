@@ -80,7 +80,7 @@ describe('Item component', () => {
 	})
 
 	it('On click on TouchableOpacity should be call setImage ', () => {
-		const component = wrapper.getByRole('openFullImage')
+		const component = wrapper.getByRole('imagebutton')
 
 		fireEvent(component, 'click')
 

@@ -19,8 +19,8 @@ import {
 import styles from './ItemFooter.styles.js'
 import Heart from 'assets/images/favicons/Heart'
 
-const onPress = async userUrl => {
-	const supported = await Linking.canOpenURL(userUrl)
+const onPress: () => Node = userUrl => {
+	const supported = Linking.canOpenURL(userUrl)
 
 	if (supported) {
 		Linking.openURL(userUrl)
@@ -29,21 +29,23 @@ const onPress = async userUrl => {
 	}
 }
 
-const ItemFooter = ({ userUrl, userLogoUrl, userName, likesCount, liked }) => {
+const ItemFooter: () => Node = ({
+	userUrl,
+	userLogoUrl,
+	userName,
+	likesCount,
+	liked
+}) => {
 	return (
 		<View style={styles.wrapper}>
-			<TouchableOpacity
-				style={styles.left}
-				onPress={() => onPress(userUrl)}
-				accessibilityRole={'open user on website'}
-			>
+			<TouchableOpacity style={styles.left} onPress={() => onPress(userUrl)}>
 				<View style={styles.userIconView}>
 					<Image
 						style={styles.userIcon}
 						source={{
 							uri: userLogoUrl
 						}}
-						accessibilityRole={'user logo'}
+						accessibilityRole={'image'}
 					/>
 				</View>
 				<Text style={styles.username}>{userName}</Text>
@@ -51,11 +53,7 @@ const ItemFooter = ({ userUrl, userLogoUrl, userName, likesCount, liked }) => {
 
 			<View style={styles.right}>
 				<View>
-					<Heart
-						style={styles.likeIcon}
-						fill={liked ? '#c83db7' : '#6c6f78'}
-						accessibilityRole={'heart'}
-					/>
+					<Heart style={styles.likeIcon} fill={liked ? '#c83db7' : '#6c6f78'} />
 				</View>
 				<Text style={styles.likeText}>{likesCount}</Text>
 			</View>
