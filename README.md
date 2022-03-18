@@ -25,7 +25,7 @@ Run on ios
 npx react-native run-ios
 ```
 
-Run on test
+Run tests
 ```sh
 jest
 ```
